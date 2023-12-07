@@ -1,7 +1,7 @@
 work day part:
     cargo watch -x "check -p {{day}}" -s "just test -p {{day}} -- {{part}}" -s "just lint {{day}}" -s "just bench {{day}} {{part}}" -s "just flamegraph {{day}} {{part}}"
-lint day:
-    cargo clippy -p {{day}}
+lint day +FLAGS='':
+    cargo clippy -p {{day}} {{FLAGS}}
 test +FLAGS='-p day-01':
     cargo nextest run {{FLAGS}}
 bench-all:
