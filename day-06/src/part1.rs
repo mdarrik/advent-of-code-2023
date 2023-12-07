@@ -1,4 +1,4 @@
-use std::{iter::zip};
+use std::iter::zip;
 
 use nom::{
     bytes::complete::take_till,
@@ -33,13 +33,12 @@ pub fn parse_input(input: &str) -> IResult<&str, Vec<(u32, u32)>> {
     Ok((input, zipped_values))
 }
 
-
 pub fn calculate_distance_range_size(t_max: u32, min_distance: u32) -> u32 {
-    dbg!(t_max.pow(2), 4 * min_distance);
     let quadratic_formula_sqrt = f64::sqrt(f64::from(t_max.pow(2) - 4 * min_distance));
-    let min_time = f64::ceil(((t_max as f64 - quadratic_formula_sqrt) / 2.0) + 10.0*f64::EPSILON) as u32;
+    let min_time =
+        f64::ceil(((t_max as f64 - quadratic_formula_sqrt) / 2.0) + 10.0 * f64::EPSILON) as u32;
     let max_time =
-        f64::floor(((t_max as f64 + quadratic_formula_sqrt) / 2.0) - 10.0*f64::EPSILON) as u32;
+        f64::floor(((t_max as f64 + quadratic_formula_sqrt) / 2.0) - 10.0 * f64::EPSILON) as u32;
     max_time - min_time + 1
 }
 
