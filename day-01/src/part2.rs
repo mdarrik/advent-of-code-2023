@@ -1,11 +1,11 @@
 use nom::{
     branch::alt,
     bytes::complete::tag,
-    character::complete::{alpha0, newline, one_of},
-    combinator::{map_res, not, opt},
+    character::complete::{newline, one_of},
+    combinator::{not, opt},
     multi::{fold_many1, separated_list0},
     sequence::delimited,
-    IResult, Parser,
+    IResult,
 };
 
 use crate::custom_error::AocError;
@@ -43,7 +43,7 @@ fn parse_line(input: &str) -> IResult<&str, (u32, u32)> {
         input,
         (
             res.0.expect("Missing first digit"),
-            res.1.unwrap_or_else(|| first_digit),
+            res.1.unwrap_or(first_digit),
         ),
     ))
 }

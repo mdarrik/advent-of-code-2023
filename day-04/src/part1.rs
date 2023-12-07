@@ -24,7 +24,7 @@ pub fn process(input: &str) -> miette::Result<u32, AocError> {
                     if game_score == 0 {
                         game_score = 1
                     } else {
-                        game_score = 2 * game_score
+                        game_score *= 2
                     }
                 }
             }

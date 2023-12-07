@@ -1,14 +1,12 @@
 use std::collections::HashMap;
 
-use ndarray::Array2;
+
 use nom::{
-    bytes::complete::{take_till, take_until, take_while},
+    bytes::complete::{take_till},
     character::{
-        complete::{anychar, digit1, newline, none_of},
-        is_digit,
+        complete::{newline},
     },
-    combinator::{all_consuming, not, opt},
-    multi::{many0, separated_list0, separated_list1},
+    combinator::{opt},
     AsChar, IResult,
 };
 
@@ -32,7 +30,7 @@ pub fn process(input: &str) -> miette::Result<u32, AocError> {
                 }
                 duplicate_map.insert(*n, ());
             }
-            return None;
+            None
         })
         .collect::<Vec<usize>>();
     dbg!(duplicates);

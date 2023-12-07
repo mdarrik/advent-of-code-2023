@@ -1,14 +1,9 @@
 use nom::{
     character::{
-        complete::{alpha0, alphanumeric0, newline, one_of, u8},
-        is_digit,
+        complete::{alpha0, newline, one_of},
     },
-    combinator::map_parser,
-    complete::take,
-    error::Error,
-    multi::{fold_many1, separated_list0, separated_list1},
-    sequence::delimited,
-    AndThen, IResult, Parser,
+    multi::{fold_many1, separated_list0},
+    sequence::delimited, IResult,
 };
 
 use crate::custom_error::AocError;
@@ -46,7 +41,7 @@ fn parse_line(input: &str) -> IResult<&str, (u32, u32)> {
         input,
         (
             res.0.expect("Missing first digit"),
-            res.1.unwrap_or_else(|| first_digit),
+            res.1.unwrap_or(first_digit),
         ),
     ))
 }
