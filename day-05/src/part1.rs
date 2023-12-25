@@ -2,7 +2,7 @@ use std::ops::Range;
 
 use nom::{
     branch::permutation,
-    bytes::complete::{tag},
+    bytes::complete::tag,
     character::complete::{alpha1, multispace1, newline, space1, u32},
     combinator::opt,
     multi::separated_list1,
